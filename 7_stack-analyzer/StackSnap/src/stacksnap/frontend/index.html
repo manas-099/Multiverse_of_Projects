@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>StackSnap - Repo Analyzer</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f9f9f9;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
+    }
+
+    .container {
+      margin-top: 50px;
+      background: #fff;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0px 4px 12px rgba(0,0,0,0.1);
+      max-width: 800px;
+      width: 100%;
+    }
+
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+
+    input[type="text"] {
+      width: 80%;
+      padding: 12px;
+      margin: 15px 0;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      font-size: 16px;
+    }
+
+    button {
+      padding: 12px 18px;
+      border: none;
+      background: #007bff;
+      color: white;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #0056b3;
+    }
+
+    .output {
+      margin-top: 25px;
+      padding: 20px;
+      border-radius: 8px;
+      background: #f1f1f1;
+      max-height: 400px;
+      overflow-y: auto;
+      font-family: monospace;
+      line-height: 1.5;
+    }
+
+    .loading {
+      color: #007bff;
+      font-weight: bold;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🚀 StackSnap Repo Analyzer</h1>
+    <div style="text-align:center;">
+      <input type="text" id="repoUrl" placeholder="Enter GitHub Repo URL (e.g. https://github.com/vercel/next.js)">
+      <button onclick="analyzeRepo()">Analyze</button>
+    </div>
+    <div id="loading" class="loading" style="display:none;">Analyzing... Please wait 🔍</div>
+    <div id="output" class="output"></div>
+  </div>
+
+  <script>
+    async function analyzeRepo() {
+      const repoUrl = document.getElementById("repoUrl").value;
+      const output = document.getElementById("output");
+      const loading = document.getElementById("loading");
+
+      if (!repoUrl) {
+        alert("Please enter a GitHub repository URL.");
+        return;
+      }
+
+      output.innerHTML = "";
+      loading.style.display = "block";
+
+      try {
+        const response = await fetch("http://127.0.0.1:8000/analyze", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({ repo_url: repoUrl })
+        });
+
+        const data = await response.json();
+        loading.style.display = "none";
+            if (data.status === "success") {
+            let resultText = "";
+
+            // Try to get the LLM result
+            if (data.data && data.data.result) {
+                resultText = data.data.result;
+            } else {
+                // fallback: pretty print the whole response
+                resultText = JSON.stringify(data.data, null, 2);
+            }
+
+            // Format line breaks for HTML
+            let formatted = resultText.replace(/\n/g, "<br>");
+            output.innerHTML = `<div>${formatted}</div>`;
+            } else {
+            output.innerHTML = "⚠️ Error: " + data.detail;
+            }
+      } catch (err) {
+        loading.style.display = "none";
+        output.innerHTML = "❌ Request failed: " + err.message;
+      }
+    }
+  </script>
+</body>
+</html>
