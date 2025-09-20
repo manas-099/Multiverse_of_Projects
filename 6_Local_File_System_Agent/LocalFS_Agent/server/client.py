@@ -4,6 +4,7 @@ from langgraph.prebuilt import create_react_agent
 from dotenv import load_dotenv
 from langchain_groq import ChatGroq
 from langgraph.checkpoint.memory import InMemorySaver
+from langchain_google_genai import ChatGoogleGenerativeAI
 import asyncio
 import getpass
 import os
@@ -41,26 +42,29 @@ async def main():
 
     
 
-    llm = ChatGroq(
-    model="deepseek-r1-distill-llama-70b",
-    temperature=0,
-    max_tokens=None,
-    reasoning_format="parsed",
-    timeout=None,
-    max_retries=2,
-    # other params...
-    )
+    # llm = ChatGroq(
+    # model="deepseek-r1-distill-llama-70b",
+    # temperature=0,
+    # max_tokens=None,
+    # # reasoning_format="parsed",
+    # timeout=None,
+    # max_retries=2,
+    # # other params... 
+    # )
     # agent=create_react_agent(
     #     llm,tools
     # )
     # 
+    llm=ChatGoogleGenerativeAI(model="gemini-2.5-flash-lite")
     roots = [
-        # r"C:\Users\manas\One\Desktop",
-        r"C:\Users\ms\OneDrive\Desktop\Bright_data"
+        r"C:\Users\manas\One\Desktop",
+        # r"C:\Users\ms\OneDrive\Desktop\Bright_data"
         # r"C:\Users\manas\Documents",
         # r"C:\Users\manas\Downloads",
        
     ]
+
+
 
     
 
@@ -68,11 +72,12 @@ async def main():
 
 
     system_message = f"All file queries are limited to these roots: {roots}"
+    # system_message = "All file queries are limited to this root directory: " + " , ".join(roots)
     checkpointer = InMemorySaver()
     agent = create_react_agent(
         llm, 
         tools, 
-        prompt=open(r'server\sys_msg.txt').read().strip()+system_message,
+        prompt=open(r'server\sys_msg.txt').read().strip()+"\n"+system_message,
         checkpointer=checkpointer
         )
     config = {"configurable": {"thread_id": "1"}}
