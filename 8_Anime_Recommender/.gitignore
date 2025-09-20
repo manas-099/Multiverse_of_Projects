@@ -1,0 +1,5 @@
+.env
+
+anime_recommender.egg-info/
+my_env/
+logs/
