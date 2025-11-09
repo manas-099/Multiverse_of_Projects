@@ -1,4 +1,0 @@
-streamlit
-Pillow
-requests
-langchain-google-genai
