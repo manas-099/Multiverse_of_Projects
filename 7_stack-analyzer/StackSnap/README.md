@@ -63,7 +63,7 @@ GOOGLE_API_KEY=""
 
 Clone the repo:
 ```bash
-git clone https://github.com/your-username/stacksnap.git
+git clone https://github.com/manas-099/Multiverse_of_Projects/tree/main/7_stack-analyzer/StackSnap
 cd stacksnap
 ```
 
