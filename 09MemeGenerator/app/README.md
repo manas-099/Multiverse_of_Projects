@@ -49,8 +49,8 @@ Generate memes automatically with **AI-powered images and captions**! This app u
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/yourusername/ultimate-ai-meme-generator.git
-cd ultimate-ai-meme-generator
+git clone https://github.com/manas-099/Multiverse_of_Projects/tree/main/09MemeGenerator
+cd app
 ```
 
 2. Install dependencies:
