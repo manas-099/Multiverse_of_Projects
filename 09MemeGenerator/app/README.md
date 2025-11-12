@@ -24,7 +24,8 @@ Generate memes automatically with **AI-powered images and captions**! This app u
 
 ## 🎬 Project Demo
 
-<iframe src="https://drive.google.com/file/d/1-N0AFqRqvhkYvppGnqcLH_NMhBeIbaYp/preview" width="640" height="360" allow="autoplay"></iframe>
+👉 [Click here to watch the demo video on Google Drive](https://drive.google.com/file/d/1-N0AFqRqvhkYvppGnqcLH_NMhBeIbaYp/view?usp=drive_link)
+
 
 
 1. Enter a topic (e.g., exams, coding, coffee) or click **Surprise Me**  
