@@ -18,19 +18,14 @@ Generate memes automatically with **AI-powered images and captions**! This app u
 - Optional screen recording using built-in laptop tools
 - Dynamic font sizing & classic meme styling
 
----
 
-## 🖼 Example Memes
-
-![Example Meme 1](https://via.placeholder.com/400x300.png?text=Example+Meme+1)  
-![Example Meme 2](https://via.placeholder.com/400x300.png?text=Example+Meme+2)
-
----
 
 ## ⚙️ How It Works
-## 🎬 (Demo)
 
-[![Watch Demo](https://img.youtube.com/vi/VIDEO_ID/0.jpg)](https://www.youtube.com/watch?v=VIDEO_ID)
+## 🎬 Project Demo
+
+<iframe src="https://drive.google.com/file/d/1-N0AFqRqvhkYvppGnqcLH_NMhBeIbaYp/preview" width="640" height="360" allow="autoplay"></iframe>
+
 
 1. Enter a topic (e.g., exams, coding, coffee) or click **Surprise Me**  
 2. Select a mood (funny, sarcastic, dark, nerdy, motivational)  
